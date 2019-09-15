@@ -60,7 +60,19 @@ const Home = () => {
             {state.resorts.length > 0 && state.viewedResort !== "" &&
                 <ResortView resortDetails={state.viewedResortDetails} />}
             {state.resorts.length == 0 &&
-                <div>Loading...</div>}
+                <div style={{
+                    display: 'block',
+                    position: 'fixed',
+                    fontSize: '35px',
+                    fontWeight: '800',
+                    textShadow: 'black 2px 2px 5px',
+                    margin: '0px auto',
+                    width: '100%',
+                    minHeight: '100%',
+                    textAlign: 'center',
+                    color: '#00b4ff',
+                    backgroundColor: '#1b365d',
+                }}>Loading...</div>}
         </div>
     )
 
