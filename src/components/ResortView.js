@@ -2,6 +2,8 @@ import React, { Fragment, } from 'react'
 
 import NotFound from './NotFound'
 
+function setHtml(html) { return {__html: html} }
+
 const ResortView = ({ resortDetails }) => {
     const fullDetails = resortDetails.name && resortDetails.altitude_bottom && resortDetails.altitude_top && resortDetails.about && resortDetails.piste_map && resortDetails.piste_map_caption
     return (
@@ -33,7 +35,7 @@ const ResortView = ({ resortDetails }) => {
                     textAlign: 'center',
                     fontWeight: '700',
                 }}>{resortDetails.altitude_bottom} - {resortDetails.altitude_top}</p>
-                <span style={{
+                <div style={{
                     display: 'block',
                     width: '80%',
                     color: 'white',
@@ -42,12 +44,24 @@ const ResortView = ({ resortDetails }) => {
                     margin: '20px auto',
                     textAlign: 'justify',
                     fontWeight: '400',
-                }}>{resortDetails.about}</span>
+                }} dangerouslySetInnerHTML={setHtml(resortDetails.about)} />
                 <img src={resortDetails.piste_map} alt={resortDetails.piste_map_caption} style={{
                     display: 'block',
                     width: '80%',
                     margin: '20px auto',
                 }}></img>
+                <div style={{
+                    display: 'block',
+                    width: '482px',
+                    height: '336px',
+                    margin: '20px auto',
+                }} dangerouslySetInnerHTML={setHtml(resortDetails.snow_forecast)} />
+                <div style={{
+                    display: 'block',
+                    width: '600px',
+                    height: '530px',
+                    margin: '20px auto',
+                }} dangerouslySetInnerHTML={setHtml(resortDetails.google_map)} />
             </div>}
             {!fullDetails && <NotFound resortName={resortDetails.name.toUpperCase()}/>}
         </Fragment>
