@@ -12,8 +12,12 @@ const App = () => {
         "https://apiv2-staging.skibro.net/resorts"
       )
       .then(({ data }) => {
-        const resorts = (data.items)
-        setResorts(resorts)
+        if (data && data.items) {
+          const resorts = (data.items)
+          setResorts(resorts)
+        } else {
+          throw new Error("No items found")
+        }
       })
       .catch(err => {
         console.error('ERR', err)
