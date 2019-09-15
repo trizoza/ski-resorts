@@ -12,7 +12,7 @@ const ResortPreview = ({ details, onClick }) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             margin: '10px',
-            boxShadow: '#7993c3 4px 4px 3px',
+            boxShadow: '#07080a 2px 2px 9px',
             padding: '20px',
         }}
         onClick={onClick}>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NotFound = () => {
+const NotFound = ({ resortName }) => {
     return (
             <div style={{
                 width: '100%',
@@ -18,7 +18,7 @@ const NotFound = () => {
                     textShadow: 'black 2px 2px 5px',
                     margin: '80px auto',
                     textAlign: 'center',
-                }}>¯\_(ツ)_/¯</h1>
+                }}>{resortName ? resortName : '¯\\_(ツ)_/¯'}</h1>
                 <a href="/" style={{
                     display: 'block',
                     fontSize: '35px',
@@ -28,7 +28,7 @@ const NotFound = () => {
                     textAlign: 'center',
                     textDecoration: 'none',
                     color: '#00b4ff',
-                }}>Go back</a>
+                }}>{resortName ? 'Details coming soon...Go back!' : 'Go back!'}</a>
             </div>
     )
 }
