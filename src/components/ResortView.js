@@ -3,8 +3,7 @@ import React, { Fragment, } from 'react'
 import NotFound from './NotFound'
 
 const ResortView = ({ resortDetails }) => {
-    console.log('DETAILS ', resortDetails);
-    const fullDetails = resortDetails.name && resortDetails.altitude_bottom && resortDetails.altitude_bottom
+    const fullDetails = resortDetails.name && resortDetails.altitude_bottom && resortDetails.altitude_top && resortDetails.about && resortDetails.piste_map && resortDetails.piste_map_caption
     return (
         <Fragment>
             {fullDetails && <div style={{
@@ -12,6 +11,7 @@ const ResortView = ({ resortDetails }) => {
                 position: 'fixed',
                 width: '100%',
                 height: '100%',
+                overflow: 'scroll',
                 background: `url(${resortDetails["hero_background"]})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
@@ -42,7 +42,12 @@ const ResortView = ({ resortDetails }) => {
                     margin: '20px auto',
                     textAlign: 'justify',
                     fontWeight: '400',
-                }}><p>{resortDetails.about}</p></span>
+                }}>{resortDetails.about}</span>
+                <img src={resortDetails.piste_map} alt={resortDetails.piste_map_caption} style={{
+                    display: 'block',
+                    width: '80%',
+                    margin: '20px auto',
+                }}></img>
             </div>}
             {!fullDetails && <NotFound resortName={resortDetails.name.toUpperCase()}/>}
         </Fragment>

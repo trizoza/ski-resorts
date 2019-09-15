@@ -28,7 +28,7 @@ const NotFound = ({ resortName }) => {
                     textAlign: 'center',
                     textDecoration: 'none',
                     color: '#00b4ff',
-                }}>{resortName ? 'Details coming soon...Go back!' : 'Go back!'}</a>
+                }}>{resortName ? 'Details coming soon...Go back to all resorts' : 'Go back to all resorts'}</a>
             </div>
     )
 }
