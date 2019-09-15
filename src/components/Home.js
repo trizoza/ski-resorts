@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import ResortPreview from './ResortPreview'
 import ResortView from './ResortView'
+import Header from './Header'
 
 const Home = () => {
     const [state, setState] = useState({
@@ -41,18 +42,7 @@ const Home = () => {
         <div style={{
             backgroundColor: '#1b365d',
         }}>
-            <div style={{
-                display: 'block',
-                height: '60px',
-                width: '100%',
-                boxShadow: 'black 0px 3px 5px',
-                top: '0px',
-                left: '0px',
-            }}>
-                <a href="/">
-                    <img src="https://www.skibro.com/en/static/media/logo.e4d10eb7.svg" height="64px"></img>
-                </a>
-            </div>
+            <Header />
             {state.resorts.length > 0 && state.viewedResort === "" &&
                 <Fragment>
                     {state.resorts.map(resort => <ResortPreview
