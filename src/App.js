@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, } from 'react'
+import axios from 'axios'
 
-function App() {
-  return (
+import './App.css'
+
+const App = () => {
+  const [resorts, setResorts] = useState([])
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://apiv2-staging.skibro.net/resorts"
+      )
+      .then(({ data }) => {
+        const resorts = (data.items)
+        setResorts(resorts)
+      })
+      .catch(err => {
+        console.error('ERR', err)
+        setResorts([])
+      })
+  }, [])
+
+  return resorts.length > 0 ? (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {resorts.map(resort => {
+          console.log('RESORT ', resort)
+          return <p key={resort["_id"]}>{resort["name"]}</p>
+        })}
+      </ul>
     </div>
-  );
+  ):(
+    <div className="App">
+      Loading...
+    </div>
+  )
 }
 
-export default App;
+export default App
