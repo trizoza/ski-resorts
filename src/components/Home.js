@@ -6,9 +6,9 @@ import ResortView from './ResortView'
 
 const Home = () => {
     const [state, setState] = useState({
-       resorts: [],
-       viewedResort: "",
-       viewedResortDetails: {}
+        resorts: [],
+        viewedResort: "",
+        viewedResortDetails: {},
     })
 
     useEffect(() => {
@@ -20,8 +20,8 @@ const Home = () => {
                 if (data && data.items) {
                     const resorts = (data.items)
                     setState({
-                        ...state, 
-                        resorts: resorts,
+                        ...state,
+                        resorts,
                     })
                 } else {
                     throw new Error("No items found")
@@ -30,36 +30,36 @@ const Home = () => {
             .catch(err => {
                 console.error('ERR', err)
                 setState({
-                    ...state, 
+                    ...state,
                     resorts: []
                 })
             })
     }, [])
 
-    if (state.resorts.length > 0 && !state.viewedResort) {
+
+    if (state.resorts.length > 0 && state.viewedResort === "") {
         return (
             <Fragment>
                 {state.resorts.map(resort => <ResortPreview
                     key={resort["_id"]}
                     details={resort}
-                    onClick={() => {
-                        console.log('click')
+                    onClick={() =>
                         setState({
                             ...state,
                             viewedResort: resort["_id"],
                             viewedResortDetails: resort,
                         })
-                    }}
+                    }
                 />)}
             </Fragment>
         )
-    } else if (state.resorts.length > 0 && state.viewedResort) {
-      return (
-        <ResortView resortDetails={state.viewedResortDetails}/>
-      )
+    } else if (state.resorts.length > 0 && state.viewedResort !== "") {
+        return (
+            <ResortView resortDetails={state.viewedResortDetails} />
+        )
     } else {
         return (
-            <div className="Home">
+            <div>
                 Loading...
             </div>
         )
