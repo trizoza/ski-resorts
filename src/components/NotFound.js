@@ -18,10 +18,9 @@ const NotFound = () => {
                     textShadow: 'black 2px 2px 5px',
                     margin: '80px auto',
                     textAlign: 'center',
-                }}>Details coming soon...</h1>
+                }}>¯\_(ツ)_/¯</h1>
                 <a href="/" style={{
                     display: 'block',
-                    color: 'white',
                     fontSize: '35px',
                     fontWeight: '800',
                     textShadow: 'black 2px 2px 5px',

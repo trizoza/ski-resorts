@@ -1,10 +1,15 @@
-import React, { useState, useEffect, } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 
 import ResortPreview from './ResortPreview'
+import ResortView from './ResortView'
 
 const Home = () => {
-    const [resorts, setResorts] = useState([])
+    const [state, setState] = useState({
+       resorts: [],
+       viewedResort: "",
+       viewedResortDetails: {}
+    })
 
     useEffect(() => {
         axios
@@ -14,28 +19,44 @@ const Home = () => {
             .then(({ data }) => {
                 if (data && data.items) {
                     const resorts = (data.items)
-                    setResorts(resorts)
+                    setState({
+                        ...state, 
+                        resorts: resorts,
+                    })
                 } else {
                     throw new Error("No items found")
                 }
             })
             .catch(err => {
                 console.error('ERR', err)
-                setResorts([])
+                setState({
+                    ...state, 
+                    resorts: []
+                })
             })
     }, [])
 
-    if (resorts.length > 0) {
+    if (state.resorts.length > 0 && !state.viewedResort) {
         return (
-            <div className="Home">
-                {resorts.map(resort => {
-                    return <ResortPreview
-                        key={resort["_id"]}
-                        details={resort}
-                    />
-                })}
-            </div>
+            <Fragment>
+                {state.resorts.map(resort => <ResortPreview
+                    key={resort["_id"]}
+                    details={resort}
+                    onClick={() => {
+                        console.log('click')
+                        setState({
+                            ...state,
+                            viewedResort: resort["_id"],
+                            viewedResortDetails: resort,
+                        })
+                    }}
+                />)}
+            </Fragment>
         )
+    } else if (state.resorts.length > 0 && state.viewedResort) {
+      return (
+        <ResortView resortDetails={state.viewedResortDetails}/>
+      )
     } else {
         return (
             <div className="Home">
