@@ -23,6 +23,14 @@ const ResortPreview = ({ details, onClick }) => {
                 margin: 'auto',
                 textAlign: 'center',
             }}>{details.name.toUpperCase()}</h1>
+            {!details.preview_image && <p style={{
+                    color: 'white',
+                    fontSize: '30px',
+                    textShadow: 'black 2px 2px 5px',
+                    margin: 'auto',
+                    textAlign: 'center',
+                    fontWeight: '300',
+                }}>Coming soon...</p>}
         </div>
     )
 }
