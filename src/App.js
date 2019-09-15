@@ -30,7 +30,9 @@ const App = () => {
       <ul>
         {resorts.map(resort => {
           console.log('RESORT ', resort)
-          return <p key={resort["_id"]}>{resort["name"]}</p>
+          return <div key={resort["_id"]}>
+            <a href={`/${resort["slug"]}`}>{resort["name"]}</a>
+          </div>
         })}
       </ul>
     </div>
