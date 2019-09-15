@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import './App.css'
 
+import ResortPreview from './ResortPreview'
+
 const App = () => {
   const [resorts, setResorts] = useState([])
 
@@ -30,9 +32,12 @@ const App = () => {
       <ul>
         {resorts.map(resort => {
           console.log('RESORT ', resort)
-          return <div key={resort["_id"]}>
-            <a href={`/${resort["slug"]}`}>{resort["name"]}</a>
-          </div>
+          return <ResortPreview 
+            key={resort["_id"]}
+            id={resort["_id"]}
+            slug={resort["slug"]}
+            name={resort["name"]}
+          />
         })}
       </ul>
     </div>
