@@ -5,7 +5,12 @@ import NotFound from './NotFound'
 function setHtml(html) { return {__html: html} }
 
 const ResortView = ({ resortDetails }) => {
-    const fullDetails = resortDetails.name && resortDetails.altitude_bottom && resortDetails.altitude_top && resortDetails.about && resortDetails.piste_map && resortDetails.piste_map_caption
+    const fullDetails = resortDetails.name 
+    && resortDetails.resortAltitude 
+    && resortDetails.altitudeTop 
+    && resortDetails.about 
+    && resortDetails.pisteMap 
+    && resortDetails.pisteMapCaption
     return (
         <Fragment>
             {fullDetails && <div style={{
@@ -14,7 +19,7 @@ const ResortView = ({ resortDetails }) => {
                 width: '100%',
                 height: '100%',
                 overflow: 'scroll',
-                background: `url(${resortDetails["hero_background"]})`,
+                background: `url(${resortDetails["heroBackground"]})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
@@ -34,7 +39,7 @@ const ResortView = ({ resortDetails }) => {
                     margin: 'auto',
                     textAlign: 'center',
                     fontWeight: '700',
-                }}>{resortDetails.altitude_bottom} - {resortDetails.altitude_top}</p>
+                }}>{resortDetails.resortAltitude} - {resortDetails.altitudeTop}</p>
                 <div style={{
                     display: 'block',
                     width: '80%',
@@ -45,7 +50,7 @@ const ResortView = ({ resortDetails }) => {
                     textAlign: 'justify',
                     fontWeight: '400',
                 }} dangerouslySetInnerHTML={setHtml(resortDetails.about)} />
-                <img src={resortDetails.piste_map} alt={resortDetails.piste_map_caption} style={{
+                <img src={resortDetails.pisteMap} alt={resortDetails.pisteMapCaption} style={{
                     display: 'block',
                     width: '80%',
                     margin: '20px auto',
@@ -55,13 +60,13 @@ const ResortView = ({ resortDetails }) => {
                     width: '482px',
                     height: '336px',
                     margin: '20px auto',
-                }} dangerouslySetInnerHTML={setHtml(resortDetails.snow_forecast)} />
+                }} dangerouslySetInnerHTML={setHtml(resortDetails.snowForecast)} />
                 <div style={{
                     display: 'block',
                     width: '600px',
                     height: '530px',
                     margin: '20px auto',
-                }} dangerouslySetInnerHTML={setHtml(resortDetails.google_map)} />
+                }} dangerouslySetInnerHTML={setHtml(resortDetails.googleMap)} />
             </div>}
             {!fullDetails && <NotFound resortName={resortDetails.name.toUpperCase()}/>}
         </Fragment>

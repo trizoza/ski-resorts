@@ -15,10 +15,11 @@ const Home = () => {
     useEffect(() => {
         axios
             .get(
-                "https://apiv2-staging.skibro.net/resorts"
+                "http://localhost:4001/resorts"
             )
             .then(({ data }) => {
                 if (data && data.items) {
+                    
                     const resorts = (data.items)
                     setState({
                         ...state,
@@ -45,13 +46,13 @@ const Home = () => {
             <Header />
             {state.resorts.length > 0 && state.viewedResort === "" &&
                 <Fragment>
-                    {state.resorts.map(resort => <ResortPreview
-                        key={resort["_id"]}
+                    {state.resorts.filter(resort => resort.previewImage).map(resort => <ResortPreview
+                        key={resort["id"]}
                         details={resort}
                         onClick={() =>
                             setState({
                                 ...state,
-                                viewedResort: resort["_id"],
+                                viewedResort: resort["id"],
                                 viewedResortDetails: resort,
                             })
                         }

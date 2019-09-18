@@ -7,7 +7,7 @@ const ResortPreview = ({ details, onClick }) => {
             verticalAlign: 'top',
             width: '400px',
             height: '300px',
-            background: `url(${details.preview_image ? details.preview_image : ""}) #ebf4f7`,
+            background: `url(${details.previewImage ? details.previewImage : ""}) #ebf4f7`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -23,7 +23,7 @@ const ResortPreview = ({ details, onClick }) => {
                 margin: 'auto',
                 textAlign: 'center',
             }}>{details.name.toUpperCase()}</h1>
-            {!details.preview_image && <p style={{
+            {!details.previewImage && <p style={{
                     color: 'white',
                     fontSize: '30px',
                     textShadow: 'black 2px 2px 5px',
